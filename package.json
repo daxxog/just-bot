@@ -1,0 +1,40 @@
+{
+    "name"        : "just-bot",
+    "description" : "an unofficial bot api for JD",
+    "license"     : "Apache-2.0",
+    "homepage"    : "https://github.com/daxxog/just-bot",
+    "main"        : "just-bot.min.js",
+    "version"     : "0.0.1",
+    "engines": {
+        "node" : ">=0.10.33"
+    },
+    "maintainers": [{
+        "name"  : "David Volm",
+        "email" : "david@volminator.com",
+        "web"   : "http://daxxog.com/"
+    }],
+    "repository": {
+        "type" : "git",
+        "url"  : "https://github.com/daxxog/just-bot.git"
+    },
+    "devDependencies": {
+        "bitfactory": "*",
+        "stoptime": "*",
+        "uglify-js": "*",
+        "vows": "*"
+    },
+    "scripts": {
+        "build": "node make.js",
+        "test": "vows test/*",
+        "start": "node cli.js",
+        "prepublish": "npm run build"
+    },
+    "files": [
+        "cli.min.js",
+        "just-bot.min.js",
+        "bin/just-bot"
+    ],
+    "bin": {
+        "just-bot" : "bin/just-bot"
+    }
+}
