@@ -380,7 +380,7 @@
     
     JustBot.prettyStake = function(stake) {
         var ourstake = (stake.stake_pft.toString() === '0') ? '; your share = ' + JustBot._tidy(stake.stake_share) + '; your total = ' + JustBot._tidy(stake.stake_pft) + '' : '';
-        console.log('STAKED: we just staked', JustBot._tidy(stake.stake), '(total =', JustBot._tidy(stake.total) + ourstake + ')');
+        return 'STAKED: we just staked', JustBot._tidy(stake.stake), '(total =', JustBot._tidy(stake.total) + ourstake + ')';
     };
     
     JustBot._tidy = function(val, fixed) {
