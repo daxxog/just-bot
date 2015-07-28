@@ -28,10 +28,6 @@ bitfactory.make({ //routes
         "just-bot.min.js": ["header", function(cb) {
             fs.writeFileSync('just-bot.min.js', header + UglifyJS.minify('just-bot.js').code);
             cb();
-        }],
-        "cli.min.js": ["header", function(cb) {
-            fs.writeFileSync('cli.min.js', header + UglifyJS.minify('cli.js').code);
-            cb();
         }]
     }
 });
