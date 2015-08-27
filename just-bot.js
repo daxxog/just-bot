@@ -280,7 +280,11 @@
     };
     
     JustBot.prototype.chat = function(txt) {
-        this.socket.emit('chat', this.csrf, txt);
+        try {
+            this.socket.emit('chat', this.csrf, txt);
+        } catch(e) {
+            this.error(e);
+        }
     };
     
     JustBot.prototype.msg = function(uid, txt) {
