@@ -208,22 +208,30 @@
         });
         
         this.socket.on('staked', function(data) {
-            that.emit('staked', {
-                stake_pft: new Big(data.stake_pft),
-                stake_share: new Big(data.stake_share),
-                stake: new Big(data.stake),
-                total: new Big(data.total)
-            });
+            try {
+                that.emit('staked', {
+                    stake_pft: new Big(data.stake_pft),
+                    stake_share: new Big(data.stake_share),
+                    stake: new Big(data.stake),
+                    total: new Big(data.total)
+                });
+            } catch(e) {
+                that.error(e);
+            }
         });
         
         this.socket.on('tip', function(from, name, amount, comment, ignored) {
-            that.emit('tip', {
-                from: from,
-                name: name,
-                amount: new Big(amount),
-                comment: comment,
-                ignored: ignored
-            });
+            try {
+                that.emit('tip', {
+                    from: from,
+                    name: name,
+                    amount: new Big(amount),
+                    comment: comment,
+                    ignored: ignored
+                });
+            } catch(e) {
+                that.error(e);
+            }
         });
         
         this.socket.on('balance', function(balance) {
