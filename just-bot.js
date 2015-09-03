@@ -104,14 +104,26 @@
     };
     
     JustBot.prototype._connect = function() {
-        var that = this;
+        var that = this,
+            SocketBuilder;
+            
+        SocketBuilder = function(cookie) {
+            return SocketClient(JustBot.ENDPOINT, {
+                reconnection: true,
+                reconnectionDelay: 2000,
+                reconnectionDelayMax: 10000,
+                transports: [JustBot.TRANSPORT],
+                extraHeaders: {
+                    origin: JustBot.ENDPOINT,
+                    cookie: cookie
+                }
+            });
+        };
         
-        this.socket = SocketClient(JustBot.ENDPOINT, {
-            transports: [JustBot.TRANSPORT],
-            extraHeaders: {
-                origin: JustBot.ENDPOINT,
-                cookie: this.cookie
-            }
+        this.socket = SocketBuilder(this.cookie);
+        
+        this.socket.on('reconnect_failed', function() {
+            that._connect(); //try to reconnect
         });
         
         this.socket.on('error', function(err) {
@@ -122,7 +134,9 @@
             that.socket.emit('version', that.csrf, key, ['just-bot', JustBot.VERSION].join(':'));
         });
         
-        this._first = true;
+        if(this._first !== true) {
+            this._first = true;
+        }
         
         this.socket.on('init', function(data) {
             var stamps = [],
