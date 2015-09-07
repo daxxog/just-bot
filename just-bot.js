@@ -103,6 +103,15 @@
         });
     };
     
+    JustBot.prototype._reconnect = function() {
+        var that = this,
+            RECON_DELAY = 500;
+        
+        setTimeout(function() {
+            that._connect();
+        }, RECON_DELAY);
+    };
+    
     JustBot.prototype._connect = function() {
         var that = this,
             SocketBuilder;
@@ -121,9 +130,12 @@
         this.socket = SocketBuilder(this.cookie);
         
         this.socket.on('disconnect', function() {
-            setTimeout(function() {
-                that._connect(); //try to reconnect (forever)
-            }, 1000);
+            that._reconnect();
+        });
+        
+        this.socket.on('set_hash', function(hash) {
+            that.socket.close();
+            that._reconnect();
         });
         
         this.socket.on('error', function(err) {
