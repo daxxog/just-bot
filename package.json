@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/daxxog/just-bot",
   "main": "just-bot.min.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "engines": {
     "node": ">=0.10.33"
   },

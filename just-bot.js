@@ -109,9 +109,7 @@
             
         SocketBuilder = function(cookie) {
             return SocketClient(JustBot.ENDPOINT, {
-                reconnection: true,
-                reconnectionDelay: 2000,
-                reconnectionDelayMax: 10000,
+                reconnection: false,
                 transports: [JustBot.TRANSPORT],
                 extraHeaders: {
                     origin: JustBot.ENDPOINT,
@@ -122,8 +120,10 @@
         
         this.socket = SocketBuilder(this.cookie);
         
-        this.socket.on('reconnect_failed', function() {
-            that._connect(); //try to reconnect
+        this.socket.on('disconnect', function() {
+            setTimeout(function() {
+                that._connect(); //try to reconnect (forever)
+            }, 1000);
         });
         
         this.socket.on('error', function(err) {
