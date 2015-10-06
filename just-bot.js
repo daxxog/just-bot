@@ -108,7 +108,7 @@
             RECON_DELAY = 500;
         
         setTimeout(function() {
-            that._connect();
+            that._login();
         }, RECON_DELAY);
     };
     
