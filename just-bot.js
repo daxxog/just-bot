@@ -321,6 +321,10 @@
         this.chat(['/tip', 'noconf', priv ? 'private' : '', uid, JustBot._tidy(amount)].join(' '));
     };
     
+    JustBot.prototype.withdraw = function(to, amount) {
+        this.socket.emit('withdraw', this.csrf, to, amount);
+    };
+    
     JustBot.prototype.roll = function(chance, stake, high) {
         this.socket.emit('bet', this.csrf, {chance: JustBot._tidy(chance, 4), bet: JustBot._tidy(stake), which: high ? 'hi' : 'lo'});
     };
