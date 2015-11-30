@@ -321,8 +321,8 @@
         this.chat(['/tip', 'noconf', priv ? 'private' : '', uid, JustBot._tidy(amount)].join(' '));
     };
     
-    JustBot.prototype.withdraw = function(to, amount) {
-        this.socket.emit('withdraw', this.csrf, to, amount);
+    JustBot.prototype.withdraw = function(to, amount, speech) {
+        this.socket.emit('withdraw', this.csrf, to, JustBot._tidy(amount), null, (typeof speech === 'string') ? speech : '');
     };
     
     JustBot.prototype.roll = function(chance, stake, high) {
