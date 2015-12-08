@@ -318,7 +318,7 @@
     };
     
     JustBot.prototype.tip = function(uid, amount, priv) {
-        this.chat(['/tip', 'noconf', priv ? 'private' : '', uid, JustBot._tidy(amount)].join(' '));
+        this.chat(['/tip', 'noconf', priv ? 'private' : '', uid, JustBot._ttidy(amount)].join(' '));
     };
     
     JustBot.prototype.withdraw = function(to, amount, speech) {
@@ -438,6 +438,16 @@
         val = val.replace(/[.]$/, '');          // remove trailing decimal point
         
         return val;
+    };
+    
+    JustBot._ttidy = function(val, fixed) {
+        var v = JustBot._tidy(val, fixed);
+        
+        if(v.indexOf('.') === -1) {
+            v += '.0';
+        }
+        
+        return v;
     };
     
     return JustBot;
