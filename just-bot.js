@@ -44,6 +44,42 @@
             }
         }
         
+        //placeholder values
+        //that.uid;
+        that.name = 'JustBot';
+        //that.csrf;
+        
+        that.news = 'news';
+        //that.api;
+        that.balance = new Big(0);
+        that.bankroll = new Big(0);
+        that.bet = new Big(0);
+        that.bets = new Big(0);
+        that.chance = new Big(0);
+        that.edge = new Big(0);
+        that.fee = new Big('0.001');
+        
+        //that.ga add later
+        
+        //that.ignores;
+        that.investment = new Big(0);
+        that.invest_pft = new Big(0);
+        that.losses = new Big(0);
+        that.luck = new Big(0);
+        that.max_profit = new Big(0);
+        //that.nonce;
+        that.offsite = new Big(0);
+        that.percent = new Big(0);
+        that.profit = new Big(0);
+        //that.seed;
+        //that.settings;
+        //that.shash;
+        that.stake_pft = new Big(0);
+        that.username = 'justbot';
+        that.wagered = new Big(0);
+        that.wins = new Big(0);
+        //that.wdaddr;
+        
         setTimeout(function() { //allow time for events to be attached
             that._login();
         }, 10);
@@ -176,7 +212,6 @@
             that.losses = new Big(data.losses);
             that.luck = new Big(S(data.luck).replaceAll('%', '').s);
             that.max_profit = new Big(data.max_profit);
-            that.news = data.news;
             that.nonce = new Big(data.nonce);
             that.offsite = new Big(data.offsite);
             that.percent = new Big(data.percent);
