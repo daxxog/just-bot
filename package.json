@@ -4,7 +4,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/daxxog/just-bot",
   "main": "just-bot.min.js",
-  "version": "0.0.16",
+  "version": "0.0.19",
   "engines": {
     "node": ">=0.10.33"
   },
@@ -26,7 +26,7 @@
     "vows": "*"
   },
   "scripts": {
-    "build": "node make.js",
+    "build": "node make.js; cat .gitignore | grep -v just-bot.min.js > .npmignore",
     "test": "vows test/*",
     "start": "node cli.js",
     "prepublish": "npm run build"
