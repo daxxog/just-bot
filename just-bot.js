@@ -75,7 +75,7 @@
         //that.settings;
         //that.shash;
         that.stake_pft = new Big(0);
-        that.username = 'justbot';
+        //that.username;
         that.wagered = new Big(0);
         that.wins = new Big(0);
         //that.wdaddr;
