@@ -118,8 +118,6 @@
         
         //2FA add later: if(credentials.code)     req.form.code     = credentials.code;
         
-        console.log(req.form);
-        
         request.post(req, function(err, res, body) {
             if(err) {
                 that.error(err);
