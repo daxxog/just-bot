@@ -40,7 +40,7 @@
             this.hash = optsHash;
         } else if(typeof optsHash === 'object') {
             for(var opt in optsHash) {
-                this[opt] = optsHash;
+                this[opt] = optsHash[opt];
             }
         }
         
@@ -117,7 +117,9 @@
         }
         
         //2FA add later: if(credentials.code)     req.form.code     = credentials.code;
-    
+        
+        console.log(req.form);
+        
         request.post(req, function(err, res, body) {
             if(err) {
                 that.error(err);
