@@ -231,7 +231,7 @@
             if(that._first === true) {
                 that.emit('ready');
                 
-                data.chat.forEach(function(v, i) {
+                /*data.chat.forEach(function(v, i) {
                     if((i % 2 == 0)) {
                         msgs.push(v);
                     } else {
@@ -246,7 +246,7 @@
                     chat.date = new Date(parseInt(stamps[i], 10));
                     
                     that.emit('chat', chat); //emit the chat backlog
-                });
+                });*/ //too much trouble
                 
                 ['news', 'balance', 'bankroll', 'max_profit', 'investment', 'percent', 'invest_pft', 'bet', 'bets', 'chance', 'nonce', 'wagered', 'balance', 'profit'].forEach(function(v) {
                     that.emit(v, that[v]);
