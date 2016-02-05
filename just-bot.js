@@ -92,7 +92,9 @@
     JustBot.VERSION = '0.0.1';
     
     JustBot.prototype.error = function(err) {
-        this.emit('error', err);
+        if(err !== 'bad hash' && err.toString() !== '') { //breaking error fix
+            this.emit("error", err);
+        }
     };
     
     JustBot.prototype._login = function() {
