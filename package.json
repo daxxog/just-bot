@@ -3,8 +3,8 @@
   "description": "an unofficial bot api for JD",
   "license": "Apache-2.0",
   "homepage": "https://github.com/daxxog/just-bot",
-  "main": "just-bot.min.js",
-  "version": "0.0.26",
+  "main": "just-bot.js",
+  "version": "0.0.27",
   "engines": {
     "node": ">=0.10.33"
   },
@@ -26,7 +26,7 @@
     "vows": "*"
   },
   "scripts": {
-    "build": "node make.js; cat .gitignore | grep -v just-bot.min.js > .npmignore",
+    "build": "node make.js; cat .gitignore | grep -v just-bot.js > .npmignore",
     "test": "vows test/*",
     "start": "node cli.js",
     "prepublish": "npm run build"
