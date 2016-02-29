@@ -44,6 +44,11 @@
             }
         }
         
+        //emit backlog
+        that.backlog = {
+            chat: []
+        }; 
+        
         //placeholder values
         //that.uid;
         that.name = 'JustBot';
@@ -343,10 +348,29 @@
     };
     
     JustBot.prototype.chat = function(txt) {
-        try {
-            this.socket.emit('chat', this.csrf, txt);
-        } catch(e) {
-            this.error(e);
+        var antiban = 0,
+            that = this;
+        
+        if(typeof this.socket === 'undefined') {
+            this.backlog.chat.push(txt);
+        } else {
+            try {
+                if(this.backlog.chat.length > 0) {
+                    this.backlog.chat.forEach(function(txt) {
+                        antiban += 2500;
+                        
+                        setTimeout(function() {
+                            that.socket.emit('chat', that.csrf, txt);
+                        }, antiban);
+                    });
+                    
+                    this.backlog.chat = []; //clear the backlog
+                }
+            
+                this.socket.emit('chat', this.csrf, txt);
+            } catch(e) {
+                this.error(e);
+            }
         }
     };
     
